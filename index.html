@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Birthday Surprise</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: #e5f3ff;
+    color: #34516b;
+    text-align: center;
+}
+
+/* INTRO PAGE */
+
+.intro {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    background: linear-gradient(145deg, #eaf6ff, #cce6ff, #f5faff);
+    position: relative;
+    overflow: hidden;
+}
+
+.small-text {
+    font-family: Arial, sans-serif;
+    letter-spacing: 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #6689a8;
+}
+
+h1 {
+    font-size: clamp(42px, 11vw, 68px);
+    color: #477da8;
+    margin: 20px 0 12px;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #6385a1;
+    margin-bottom: 35px;
+    line-height: 1.6;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: min(260px, 90%);
+}
+
+button {
+    border: none;
+    padding: 15px 20px;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.celebrate-btn {
+    background: #6d9fc8;
+    color: white;
+    box-shadow: 0 5px 15px #8bb6d566;
+}
+
+.surprise-btn {
+    background: white;
+    color: #527fa5;
+    border: 1px solid #b6d5ef;
+}
+
+/* DECORATIONS */
+
+.decoration {
+    position: absolute;
+    font-size: 25px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.one { top: 12%; left: 10%; }
+.two { top: 20%; right: 12%; }
+.three { bottom: 15%; left: 13%; }
+.four { bottom: 12%; right: 12%; }
+
+/* SURPRISE SECTION */
+
+#surprise {
+    padding: 55px 20px;
+    background: #f7fbff;
+    animation: appear 1s ease;
+}
+
+#surprise[hidden] {
+    display: none;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.surprise-heading {
+    font-size: 34px;
+    color: #477da8;
+    margin-bottom: 12px;
+}
+
+/* PHOTOGRAPHS */
+
+.photos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    margin: 30px auto;
+    max-width: 420px;
+}
+
+.photos img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px #7399b533;
+}
+
+/* BIRTHDAY MESSAGE */
+
+.message {
+    max-width: 500px;
+    margin: 25px auto;
+    padding: 25px;
+    background: #e8f4ff;
+    border-radius: 18px;
+    line-height: 1.8;
+    font-size: 17px;
+    white-space: pre-line;
+}
+
+/* AUDIO MESSAGE */
+
+.audio-box {
+    margin: 35px auto;
+    max-width: 400px;
+    padding: 25px;
+    background: #e8f4ff;
+    border-radius: 18px;
+}
+
+audio {
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* FOOTER */
+
+.footer {
+    padding: 25px;
+    color: #7895ad;
+    font-size: 14px;
+}
+
+/* CONFETTI EFFECT */
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    z-index: 1000;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(800deg);
+        opacity: 0;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO PAGE -->
+
+<section class="intro" id="intro">
+
+    <span class="decoration one">☁️</span>
+    <span class="decoration two">✨</span>
+    <span class="decoration three">🦋</span>
+    <span class="decoration four">🎈</span>
+
+    <p class="small-text">A little celebration of you</p>
+
+    <h1>Happy<br>Birthday!</h1>
+
+    <p class="subtitle">
+        Today is all about you.<br>
+        Here's a little something special.
+    </p>
+
+    <div class="buttons">
+
+        <button class="celebrate-btn" onclick="celebrate()">
+            🎉 Let's Celebrate
+        </button>
+
+        <button class="surprise-btn" onclick="openSurprise()">
+            🎁 Open your surprise
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- HIDDEN BIRTHDAY SURPRISE -->
+
+<section id="surprise" hidden>
+
+    <p class="small-text">Made with love</p>
+
+    <h2 class="surprise-heading">
+        A Little Something For You ♡
+    </h2>
+
+    <p>Some memories deserve their own little space.</p>
+
+
+    <!-- PHOTOGRAPHS -->
+
+    <div class="photos">
+
+        <img src="photo1.jpg" alt="A special memory">
+
+        <img src="photo2.jpg" alt="Another lovely memory">
+
+    </div>
+
+
+    <!-- BIRTHDAY WISH -->
+
+    <div class="message">
+
+        <h3>A Birthday Wish ♡</h3>
+
+        Happy Birthday!
+
+        May your days be filled with happiness,
+        beautiful memories and countless reasons to smile.
+
+        Wishing you a wonderful year ahead!
+
+    </div>
+
+
+    <!-- AUDIO MESSAGE -->
+
+    <div class="audio-box">
+
+        <h3>🎧 A Little Voice Note</h3>
+
+        <p>There's something I'd like you to hear...</p>
+
+        <audio controls>
+            <source src="voice.m4a" type="audio/mp4">
+            Your browser does not support audio playback.
+        </audio>
+
+    </div>
+
+
+    <p class="footer">
+        A little surprise, just for you. 🩵
+    </p>
+
+</section>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+function celebrate() {
+
+    const symbols = ["🎊", "🎉", "✨", "💙", "🎀", "✦"];
+
+    for (let i = 0; i < 65; i++) {
+
+        const confetti = document.createElement("span");
+
+        confetti.className = "confetti";
+
+        confetti.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        confetti.style.left = Math.random() * 100 + "vw";
+
+        confetti.style.fontSize =
+            (12 + Math.random() * 18) + "px";
+
+        confetti.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 5500);
+
+    }
+}
+
+
+function openSurprise() {
+
+    const surprise = document.getElementById("surprise");
+
+    surprise.hidden = false;
+
+    setTimeout(() => {
+
+        surprise.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 100);
+
+}
+
+</script>
+
+</body>
+</html>
