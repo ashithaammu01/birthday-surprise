@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Birthday Surprise</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: #e5f3ff;
+    color: #34516b;
+    text-align: center;
+}
+
+/* INTRO PAGE */
+
+.intro {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    background: linear-gradient(145deg, #eaf6ff, #cce6ff, #f5faff);
+    position: relative;
+    overflow: hidden;
+}
+
+.small-text {
+    font-family: Arial, sans-serif;
+    letter-spacing: 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #6689a8;
+}
+
+h1 {
+    font-size: clamp(42px, 11vw, 68px);
+    color: #477da8;
+    margin: 20px 0 12px;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #6385a1;
+    margin-bottom: 35px;
+    line-height: 1.6;
+}
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: min(260px, 90%);
+}
+
+button {
+    border: none;
+    padding: 15px 20px;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
+    font-family: Arial, sans-serif;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.celebrate-btn {
+    background: #6d9fc8;
+    color: white;
+    box-shadow: 0 5px 15px #8bb6d566;
+}
+
+.surprise-btn {
+    background: white;
+    color: #527fa5;
+    border: 1px solid #b6d5ef;
+}
+
+.next-btn {
+    background: #6d9fc8;
+    color: white;
+    margin: 20px auto;
+    padding: 15px 25px;
+    box-shadow: 0 5px 15px #8bb6d533;
+}
+
+/* DECORATIONS */
+
+.decoration {
+    position: absolute;
+    font-size: 25px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.one { top: 12%; left: 10%; }
+.two { top: 20%; right: 12%; }
+.three { bottom: 15%; left: 13%; }
+.four { bottom: 12%; right: 12%; }
+
+/* SURPRISE SECTION */
+
+#surprise {
+    padding: 55px 20px;
+    background: #f7fbff;
+    animation: appear 1s ease;
+}
+
+#surprise[hidden],
+.reveal-section[hidden],
+.final-surprise[hidden] {
+    display: none !important;
+}
+
+.reveal-section {
+    animation: appear 0.8s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* PHOTOGRAPHS */
+
+.photos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: 30px auto;
+    max-width: 420px;
+}
+
+.photo-card {
+    width: 100%;
+}
+
+.photos img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px #7399b533;
+}
+
+.photo-caption {
+    color: #6385a1;
+    font-size: 16px;
+    font-style: italic;
+    margin-top: 14px;
+    line-height: 1.6;
+}
+
+/* BIRTHDAY LETTER */
+
+.message {
+    max-width: 550px;
+    margin: 30px auto;
+    padding: 25px;
+    background: #e8f4ff;
+    border-radius: 18px;
+    line-height: 1.9;
+    font-size: 16px;
+    text-align: left;
+    box-shadow: 0 5px 18px #7399b51a;
+}
+
+.message h3 {
+    text-align: center;
+    color: #477da8;
+    font-size: 23px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.message p {
+    margin-bottom: 20px;
+}
+
+/* AUDIO MESSAGE */
+
+.audio-box {
+    margin: 35px auto;
+    max-width: 400px;
+    padding: 25px;
+    background: #e8f4ff;
+    border-radius: 18px;
+}
+
+.audio-box h3 {
+    color: #477da8;
+}
+
+audio {
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* GIFT QUESTION */
+
+.gift-box {
+    max-width: 420px;
+    margin: 35px auto;
+    padding: 25px;
+    background: #e8f4ff;
+    border-radius: 18px;
+}
+
+.gift-box h3 {
+    color: #477da8;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.answer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.answer-buttons button {
+    background: #6d9fc8;
+    color: white;
+    min-width: 100px;
+}
+
+/* FINAL SURPRISE */
+
+.final-surprise {
+    max-width: 420px;
+    margin: 35px auto;
+    padding: 30px 20px;
+    background: #e8f4ff;
+    border-radius: 18px;
+    animation: appear 1s ease;
+}
+
+.final-surprise h2 {
+    color: #477da8;
+    font-size: 27px;
+}
+
+/* FOOTER */
+
+.footer {
+    padding: 25px;
+    color: #7895ad;
+    font-size: 14px;
+}
+
+/* CONFETTI EFFECT */
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    z-index: 1000;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(800deg);
+        opacity: 0;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- INTRO PAGE -->
+
+<section class="intro" id="intro">
+
+    <span class="decoration one">☁️</span>
+    <span class="decoration two">✨</span>
+    <span class="decoration three">🦋</span>
+    <span class="decoration four">🎈</span>
+
+    <p class="small-text">
+        A little celebration of you
+    </p>
+
+    <h1>
+        Happy<br>Birthday!
+    </h1>
+
+    <p class="subtitle">
+        Today is all about you.<br>
+        Here's a little something special.
+    </p>
+
+    <div class="buttons">
+
+        <button class="celebrate-btn" onclick="celebrate()">
+            🎉 Let's Celebrate
+        </button>
+
+        <button class="surprise-btn" onclick="openSurprise()">
+            Let's start 😁
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- PHOTOGRAPHS -->
+
+<section id="surprise" hidden>
+
+    <p class="small-text">
+        Made with love
+    </p>
+
+    <p>
+        Some memories deserve their own little space.
+    </p>
+
+    <div class="photos">
+
+        <div class="photo-card">
+
+            <img src="photo1.jpg" alt="A special memory">
+
+            <p class="photo-caption">
+                Thanks for being by my side always.
+            </p>
+
+        </div>
+
+        <div class="photo-card">
+
+            <img src="photo2.jpg" alt="Another lovely memory">
+
+            <p class="photo-caption">
+                Thanks for making ordinary days extraordinary.
+            </p>
+
+        </div>
+
+    </div>
+
+    <button class="next-btn" id="wishesButton"
+        onclick="revealSection('messageSection', 'wishesButton')">
+
+        Here is my Birthday wishes 💌
+
+    </button>
+
+</section>
+
+
+<!-- BIRTHDAY WISHES -->
+
+<section id="messageSection" class="reveal-section" hidden>
+
+    <div class="message">
+
+        <h3>My dear Ponnu...</h3>
+
+        <p>
+            As you turn 20, I can't believe how quickly you've grown up!
+            The little girl who used to fight with me over the silliest
+            things has now grown into a mature young woman who gives me
+            advice on life's decisions. I am so proud of the woman you
+            are becoming. 💅🏽
+        </p>
+
+        <p>
+            With all that pride, I thought of creating something special
+            for you, and that's how the idea of a "Birthday Website"
+            came about. 😌 And after a sleepless night, here it is... 🥵
+        </p>
+
+        <p>
+            Ponnu, you have been a part of all my yesterdays, a blessing
+            in my today, and someone I want to share all my tomorrows
+            with. 🦋
+        </p>
+
+        <p>
+            On your birthday, I want to tell you one thing: always keep
+            that little girl inside you happy and alive. 💫 And if anyone
+            dares to disturb her, just thattal him/her and tell them,
+            "Baaki ente chechi nokkikkolum!" 😂❤️
+        </p>
+
+        <p>
+            I love you! 🙈
+        </p>
+
+        <p>
+            Happiest Birthday, Ponnu! ❤️
+        </p>
+
+    </div>
+
+    <button class="next-btn" id="voiceButton"
+        onclick="revealSection('voiceSection', 'voiceButton')">
+
+        Let's hear something 😁
+
+    </button>
+
+</section>
+
+
+<!-- VOICE NOTE AND GIFT QUESTION -->
+
+<section id="voiceSection" class="reveal-section" hidden>
+
+    <div class="audio-box">
+
+        <h3>🎧 A Little Voice Note</h3>
+
+        <p>
+            There's something I'd like you to hear...
+        </p>
+
+        <audio controls>
+            <source src="voice.m4a" type="audio/mp4">
+            Your browser does not support audio playback.
+        </audio>
+
+    </div>
+
+
+    <!-- GIFT QUESTION -->
+
+    <div class="gift-box">
+
+        <h3>Still need some gifts?? 🎁</h3>
+
+        <div class="answer-buttons">
+
+            <button onclick="playBirthdaySong()">
+                Yes 😁
+            </button>
+
+            <button onclick="playBirthdaySong()">
+                Yes 😂
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL BIRTHDAY SURPRISE -->
+
+<section id="finalSurprise" class="final-surprise" hidden>
+
+    <h2>One last surprise! 🎂</h2>
+
+    <p>
+        Because birthdays deserve a little more celebration! ❤️
+    </p>
+
+    <p>
+        Happy Birthday to you, Ponnu! 🎉
+    </p>
+
+    <audio id="birthdaySong" controls>
+        <source src="happy-birthday.mp3" type="audio/mpeg">
+        Your browser does not support audio playback.
+    </audio>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<p class="footer">
+    A little surprise, just for you. 🩵
+</p>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+function celebrate() {
+
+    const symbols = ["🎊", "🎉", "✨", "💙", "🎀", "✦"];
+
+    for (let i = 0; i < 65; i++) {
+
+        const confetti = document.createElement("span");
+
+        confetti.className = "confetti";
+
+        confetti.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        confetti.style.left = Math.random() * 100 + "vw";
+
+        confetti.style.fontSize =
+            (12 + Math.random() * 18) + "px";
+
+        confetti.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 5500);
+
+    }
+
+}
+
+
+/* OPEN PHOTOGRAPHS */
+
+function openSurprise() {
+
+    const surprise = document.getElementById("surprise");
+
+    surprise.hidden = false;
+
+    surprise.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+
+/* REVEAL NEXT SECTION */
+
+function revealSection(sectionId, buttonId) {
+
+    const section = document.getElementById(sectionId);
+
+    const button = document.getElementById(buttonId);
+
+    button.hidden = true;
+
+    section.hidden = false;
+
+    setTimeout(() => {
+
+        section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 100);
+
+}
+
+
+/* FINAL BIRTHDAY SURPRISE */
+
+function playBirthdaySong() {
+
+    const finalSurprise =
+        document.getElementById("finalSurprise");
+
+    const song =
+        document.getElementById("birthdaySong");
+
+    finalSurprise.hidden = false;
+
+    finalSurprise.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    song.play().catch(() => {
+
+        song.controls = true;
+
+        alert("Tap the play button to hear your birthday song! ❤️");
+
+    });
+
+}
+
+</script>
+
+</body>
+  </html>
